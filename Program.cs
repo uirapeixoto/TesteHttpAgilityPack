@@ -15,21 +15,23 @@ namespace ProjetoTeste
         {
             var webclient = new MyWebClient();
             
-            HtmlDocument document = webclient.GetPage("https://loja.uira.com.br/loja/index.php", true);
-
-            var response = webclient.GetResponse();
-
-            if (webclient.GetResponse().StatusCode == HttpStatusCode.OK)
+            var document = webclient.GetStringPage("https://loja.uira.com.br/loja/index.php") ;
+            if (document.Contains("homefeatured"))
             {
-                using (var streamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-                {
-                    document.OptionFixNestedTags = true;
-                    document.Load(streamReader);
-
-                    Console.WriteLine(streamReader);
-                }
+                Console.WriteLine("achou");
             }
 
+            var htmlDoc = webclient.GetHmlDocumento();
+            var texto = htmlDoc.DocumentNode.Descendants("ul")
+                .Where(div => div.GetAttributeValue("id", "homefeatured").Equals("tab-content"))
+                .Select(ul => new
+                {
+                    ul.Descendants("li").FirstOrDefault().InnerText
+                }).FirstOrDefault();
+                
+
+            Console.WriteLine(texto);
+            
             Console.WriteLine(document);
             Console.ReadKey();
         }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,8 @@ namespace ProjetoTeste
         public bool     _useCredential;
         public bool     _autoRedirect;
         public string   _lasUrl;
+        public string   _responseString;
+        public HtmlDocument   _responsetHtmlDocument;
         private HttpWebResponse _response;
         public HttpWebRequest _request;
 
@@ -61,6 +64,11 @@ namespace ProjetoTeste
             return _response;
         }
 
+        public HtmlDocument GetHmlDocumento()
+        {
+            return _responsetHtmlDocument;
+        }
+
         /// <summary>
         /// Makes a HTTP GET request to the given URL
         /// </summary>
@@ -92,6 +100,65 @@ namespace ProjetoTeste
             web.PostResponse = new HtmlWeb.PostResponseHandler(OnAfterResponse);
             web.PreHandleDocument = new HtmlWeb.PreHandleDocumentHandler(OnPreHandleDocument);
             return web;
+        }
+
+        public List<string> GetHtmlPage(string strURL)
+        {
+            // the html retrieved from the page
+
+            WebResponse objResponse;
+            WebRequest objRequest = System.Net.HttpWebRequest.Create(strURL);
+            objResponse = objRequest.GetResponse();
+            // the using keyword will automatically dispose the object 
+            // once complete
+            using (StreamReader sr =
+            new StreamReader(objResponse.GetResponseStream()))
+            {//*[@id="atfResults"]
+                string strContent = sr.ReadToEnd();
+                // Close and clean up the StreamReader
+                sr.Close();
+                /*Regex regex = new Regex("<body>((.|\n)*?)</body>", RegexOptions.IgnoreCase);
+
+                //Here we apply our regular expression to our string using the 
+                //Match object. 
+                Match oM = regex.Match(strContent);
+                Result = oM.Value;*/
+
+                HtmlDocument doc = new HtmlDocument();
+                doc.Load(new StringReader(strContent));
+                HtmlNode root = doc.DocumentNode;
+                List<string> itemTags = new List<string>();
+
+
+
+                string listingtag = "//*[@id=homefeatured]";
+
+                foreach (HtmlNode link in root.SelectNodes(listingtag))
+                {
+                    string att = link.OuterHtml;
+
+                    itemTags.Add(att);
+                }
+
+                return itemTags;
+            }
+
+        }
+
+        public string GetStringPage(string url)
+        {
+            WebRequest req = WebRequest.Create(url);
+            WebResponse res = req.GetResponse();
+
+            _responsetHtmlDocument = new HtmlDocument();
+            _responsetHtmlDocument.Load(res.GetResponseStream());
+
+            StreamReader reader = new StreamReader(res.GetResponseStream());
+            var result = reader.ReadToEnd();
+            reader.Close();
+            res.Close();
+
+            return result;
         }
 
         /// <summary>
@@ -168,6 +235,7 @@ namespace ProjetoTeste
                     _cookies = new CookieCollection();
 
                 _response = response;
+
                 _cookies.Add(response.Cookies);
             }
         }
