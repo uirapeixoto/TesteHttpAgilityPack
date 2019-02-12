@@ -23,7 +23,7 @@ namespace ProjetoTeste
 
             var htmlDoc = webclient.GetHmlDocumento();
             var texto = htmlDoc.DocumentNode.Descendants("ul")
-                .Where(div => div.GetAttributeValue("id", "homefeatured").Equals("tab-content"))
+                .Where(div => div.GetAttributeValue("id", "").Equals("homefeatured"))
                 .Select(ul => new
                 {
                     ul.Descendants("li").FirstOrDefault().InnerText
