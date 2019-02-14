@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace namespace ProjetoTeste.Helper
+namespace ProjetoTeste.Helper
 {
     /// <summary>
     /// Author: Felipe Guarneri

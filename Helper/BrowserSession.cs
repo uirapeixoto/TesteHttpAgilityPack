@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace namespace ProjetoTeste.Helper
+namespace ProjetoTeste.Helper
 {
     public class BrowserSession : IDisposable
     {

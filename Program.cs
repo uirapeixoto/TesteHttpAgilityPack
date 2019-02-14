@@ -1,4 +1,5 @@
 using HtmlAgilityPack;
+using ProjetoTeste.Page;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,24 +14,10 @@ namespace ProjetoTeste
     {
         static void Main(string[] args)
         {
-            var webclient = new MyWebClient();
-            
-            HtmlDocument document = webclient.GetPage("https://loja.uira.com.br/loja/index.php", true);
 
-            var response = webclient.GetResponse();
-
-            if (webclient.GetResponse().StatusCode == HttpStatusCode.OK)
-            {
-                using (var streamReader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
-                {
-                    document.OptionFixNestedTags = true;
-                    document.Load(streamReader);
-
-                    Console.WriteLine(streamReader);
-                }
-            }
-
-            Console.WriteLine(document);
+            var page = new AutomobilePage();
+            var result = page.GetCars2();
+            Console.WriteLine(result);
             Console.ReadKey();
         }
     }

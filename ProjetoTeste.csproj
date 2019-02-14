@@ -43,6 +43,12 @@
     <Reference Include="System.Net.Http, Version=4.1.1.3, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Net.Http.4.3.4\lib\net46\System.Net.Http.dll</HintPath>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Runtime.Serialization.Primitives, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\System.Runtime.Serialization.Primitives.4.3.0\lib\net46\System.Runtime.Serialization.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
     </Reference>
@@ -58,6 +64,7 @@
     <Reference Include="System.Web.HttpUtility">
       <HintPath>C:\Users\uiraoliveira\.nuget\packages\microsoft.netcore.app\2.1.0\ref\netcoreapp2.1\System.Web.HttpUtility.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -66,15 +73,67 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BrowserSession.cs" />
+    <Compile Include="Domain\Model\asc\Anexo.cs" />
+    <Compile Include="Domain\Model\asc\ASCDetails.cs" />
+    <Compile Include="Domain\Model\asc\Certificados.cs" />
+    <Compile Include="Domain\Model\asc\CertificadosDC.cs" />
+    <Compile Include="Domain\Model\asc\Comunicado.cs" />
+    <Compile Include="Domain\Model\asc\ComunicadoDC.cs" />
+    <Compile Include="Domain\Model\asc\ComunicadoDoc.cs" />
+    <Compile Include="Domain\Model\asc\ComunicadoMain.cs" />
+    <Compile Include="Domain\Model\asc\ComunicadoRTF.cs" />
+    <Compile Include="Domain\Model\asc\ComunicadoRTFMain.cs" />
+    <Compile Include="Domain\Model\asc\ComunicadoRTFXML.cs" />
+    <Compile Include="Domain\Model\asc\ComunicadoXML.cs" />
+    <Compile Include="Domain\Model\asc\Comunicante.cs" />
+    <Compile Include="Domain\Model\asc\ConcorrenciaOuvidoria.cs" />
+    <Compile Include="Domain\Model\asc\Consorcio.cs" />
+    <Compile Include="Domain\Model\asc\Consorcios.cs" />
+    <Compile Include="Domain\Model\asc\Contrato.cs" />
+    <Compile Include="Domain\Model\asc\Danosmateriais.cs" />
+    <Compile Include="Domain\Model\asc\Empresa.cs" />
+    <Compile Include="Domain\Model\asc\EmpresaDC.cs" />
+    <Compile Include="Domain\Model\asc\Finalizacao.cs" />
+    <Compile Include="Domain\Model\asc\FinalizacaoDC.cs" />
+    <Compile Include="Domain\Model\asc\LinhaGridWebService.cs" />
+    <Compile Include="Domain\Model\asc\Ocorrencia.cs" />
+    <Compile Include="Domain\Model\asc\OrigemOcorrenciaOuvidoria.cs" />
+    <Compile Include="Domain\Model\asc\PessoaOuvidoria.cs" />
+    <Compile Include="Domain\Model\asc\Produto.cs" />
+    <Compile Include="Domain\Model\asc\ProdutoDC.cs" />
+    <Compile Include="Domain\Model\asc\Produtos.cs" />
+    <Compile Include="Domain\Model\asc\ProdutosDC.cs" />
+    <Compile Include="Domain\Model\asc\Reclamante.cs" />
+    <Compile Include="Domain\Model\asc\ReclamanteDC.cs" />
+    <Compile Include="Domain\Model\asc\SeguradoComunicado.cs" />
+    <Compile Include="Domain\Model\asc\SeguradoDoc.cs" />
+    <Compile Include="Domain\Model\asc\SinistroComunicado.cs" />
+    <Compile Include="Domain\Model\asc\SinistroDC.cs" />
+    <Compile Include="Domain\Model\asc\SubisidioOvidoria.cs" />
+    <Compile Include="Domain\Model\asc\TipoContatoOuvidoria.cs" />
+    <Compile Include="Domain\Model\asc\TipoOcorrenciaOuvidoria.cs" />
+    <Compile Include="Domain\Model\asc\TipoPessoa.cs" />
+    <Compile Include="Domain\Model\CarModel.cs" />
     <Compile Include="FormElementCollection.cs" />
+    <Compile Include="Helper\BrowserSession.cs" />
+    <Compile Include="Helper\Class1.cs" />
+    <Compile Include="Helper\FormElementCollection.cs" />
+    <Compile Include="Helper\Library\Fixer.cs" />
+    <Compile Include="Helper\Library\RTFUtil.cs" />
+    <Compile Include="Helper\Library\StringExtension.cs" />
+    <Compile Include="Helper\Library\TextFileEncodingDetector.cs" />
+    <Compile Include="Helper\SettingsManager.cs" />
     <Compile Include="MyWebClient.cs" />
+    <Compile Include="Pages\AutomobilePage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SettingsManager.cs" />
+    <Compile Include="WebCrawler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace namespace ProjetoTeste.Helper
+namespace ProjetoTeste.Helper
 {
     /// <summary>
     /// Represents a combined list and collection of Form Elements.
