@@ -37,14 +37,10 @@ namespace ProjetoTeste.Page
 
         public async Task GetCars2()
         {
-            
             var url = "https://www.automobile.tn/neuf/bmw.3/";
             var uri = new Uri(url);
             var httpClient = new HttpClient();
             var response = await httpClient.GetByteArrayAsync(url);
-            
-
-
         }
 
         public void Dispose()

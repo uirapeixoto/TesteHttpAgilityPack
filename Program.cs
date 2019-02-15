@@ -1,12 +1,5 @@
-using HtmlAgilityPack;
-using ProjetoTeste.Page;
+using ProjetoTeste.Pages;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ProjetoTeste
 {
@@ -15,9 +8,11 @@ namespace ProjetoTeste
         static void Main(string[] args)
         {
 
-            var page = new AutomobilePage();
-            var result = page.GetCars2();
-            Console.WriteLine(result);
+            var page = new UiraPage();
+            var result = page.Login();
+            var pageHome = page.GetHome();
+            
+            Console.WriteLine(pageHome);
             Console.ReadKey();
         }
     }

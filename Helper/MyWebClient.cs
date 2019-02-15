@@ -7,9 +7,8 @@ using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web;
 
-namespace ProjetoTeste
+namespace ProjetoTeste.Crawler
 {
     public class MyWebClient
     {
@@ -322,86 +321,6 @@ namespace ProjetoTeste
             htmlDocument.LoadHtml(html);
 
             return htmlDocument;
-        }
-
-
-
-        /// <summary>
-        /// Anexar um parâmetro de url a um construtor de string, codifica url o valor
-        /// </summary>
-        /// <param name="sb"></param>
-        /// <param name="name"></param>
-        /// <param name="value"></param>
-        protected void AppendParameter(StringBuilder sb, Dictionary<string, string> dataSendKeyValue)
-        {
-            foreach (var item in dataSendKeyValue)
-            {
-                sb.AppendFormat($"{item.Key}={item.Value}");
-            }
-            
-        }
-
-        /// <summary>
-        /// Envia os dados via post
-        /// </summary>
-        /// <param name="url"></param>
-        /// <param name="sendPostKeyValue"></param>
-        /// <returns>HttpWebResponse</returns>
-        public HttpWebResponse SendDataToService(string url, Dictionary<string, string> sendPostKeyValue)
-        {
-            StringBuilder sb = new StringBuilder();
-            AppendParameter(sb, sendPostKeyValue);
-
-            byte[] byteArray = Encoding.UTF8.GetBytes(sb.ToString());
-
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "POST";
-            request.ContentType = "application/x-www-form-urlencoded";
-            //request.Credentials = CredentialCache.DefaultNetworkCredentials; // ??
-
-            using (Stream requestStream = request.GetRequestStream())
-            {
-                requestStream.Write(byteArray, 0, byteArray.Length);
-            }
-
-            _response = (HttpWebResponse)request.GetResponse();
-
-            return (_response.StatusCode == HttpStatusCode.OK) ? _response : null;
-
-        }
-
-        /// <summary>
-        /// Converte o retorno do tipo HttpWebResponse em string
-        /// </summary>
-        /// <param name="response"></param>
-        /// <returns>string</returns>
-        public string GetResponseString(HttpWebResponse response)
-        {
-            if(response.StatusCode == HttpStatusCode.OK)
-            {
-                using (Stream stream = response.GetResponseStream())
-                {
-                    StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-                    _responseString = reader.ReadToEnd();
-
-                    return _responseString;
-                }
-            }
-            else
-            {
-                return string.Empty;
-            }
-        }
-
-        public HttpWebResponse GetPageResponse(string url)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-            request.Method = "GET";
-            request.Accept = "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8";
-            request.Credentials = CredentialCache.DefaultNetworkCredentials;
-
-            _response = (HttpWebResponse)request.GetResponse();
-            return _response;
         }
     }
 }
